@@ -13,6 +13,9 @@ if ! command -v zsh; then
   apt install zsh -y
 fi
 
+# add the hammerspoon config
+cp ./hammerspoon/init.lua ~/.hammerspoon/init.lua
+
 # install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 

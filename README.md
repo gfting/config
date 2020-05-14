@@ -20,7 +20,22 @@ source ~/.cargo/env # update PATH for rust tooling
 # Hammerspoon
 
 -   Credits to https://liuhao.im/english/2017/06/02/macos-automation-and-shortcuts-with-hammerspoon.html for the initial hammerspoon configuration.
--   Setup
+
+## Some Commands
+
+-   Window sizing using cmd + opt + (arrows || enter)
+-   Quick app opening with opt + \_
+    -   c = Chrome
+    -   v = VSCode
+    -   t = iTerm
+    -   n = Notion
+    -   s = Slack
+
+## Setup
+
+-   First, install HammerSpoon.
+-   The script will automatically overwrite the existing `~/.hammerspoon/init.lua` file.
+-   Hit `Reload Config` if nothing is working.
 
 # iTerm
 
