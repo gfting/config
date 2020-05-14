@@ -27,3 +27,22 @@ source ~/.cargo/env # update PATH for rust tooling
 -   Install iTerm
 -   Go to `Preferences` -> `General` -> `Preferences` -> `Load preferences from a custom folder or URL`, and then copy the [`com.googlecode.iterm2.plist`](iterm/com.googlecode.iterm2.plist) file there.
 -   Go to `Preferences` -> `Profiles` -> `Other Actions...` -> `Import JSON Profiles` -> use [iterm/Profiles.json](iterm/Profiles.json).
+
+# VSCode
+
+-   Install VSCode
+-   Open the command palette, and select `Settings (JSON)`. Then, copy-paste the settings.json over.
+
+## VSCode extensions
+
+-   GitLens
+-   Python
+-   ESLint
+-   Jest
+-   Jest runner
+-   Output colorizer
+-   Path intellisense
+-   Import Cost
+-   tslint
+-   Theme: Material Palenight High Contrast
+-   Icons: material-icon-theme
