@@ -47,6 +47,7 @@ source ~/.cargo/env # update PATH for rust tooling
 
 -   Install VSCode
 -   Open the command palette, and select `Settings (JSON)`. Then, copy-paste the settings.json over.
+-   The script could probably do `~Library/Application Support/Code/User/settings.json`, but I'm not always confident that it transitions well.
 
 ## VSCode extensions
 
@@ -61,3 +62,52 @@ source ~/.cargo/env # update PATH for rust tooling
 -   tslint
 -   Theme: Material Palenight High Contrast
 -   Icons: material-icon-theme
+
+# Fish
+
+-   The script should `brew install fish`, and then install oh-my-fish, and install some necessary fonts.
+-   Once the script is over, manually run `omf install bobthefish` to install the bobthefish theme, and walk through the setup.
+
+# Zsh + mods
+
+:fire: :fire: :fire: Run `install.sh` after installing the extensions below
+
+How to install extensions - https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh
+
+-   [zsh-users/zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh)
+-   [zsh-users/zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md#oh-my-zsh)
+-   Zsh autocorrect enabled default
+-   [colored-man-pages](https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/colored-man-pages/colored-man-pages.plugin.zsh)
+-   [fzf extension](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/fzf) -- auto installed w/ `fzf`
+-   [fasd extension](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/fasd)
+
+## aliases
+
+```bash
+# custom
+alias ff="firefox"
+alias tn="thunar"
+
+alias sai="sudo apt install"
+alias sau="sudo apt update"
+
+alias fzfp="fzf --preview 'bat --style=numbers --color=always {} | head -500'"
+
+alias fd="fdfind"
+
+# fasd
+alias a='fasd -a'        # any
+alias s='fasd -si'       # show / search / select
+alias d='fasd -d'        # directory
+alias f='fasd -f'        # file
+alias z='fasd_cd -d'     # cd, same as z,j,autojump
+
+# from fasd zsh plugin
+alias v='fasd -f -e "$EDITOR"'
+alias o="fasd -a -e xdg-open"
+alias j="fasd_cd -d -i"
+```
+
+# Misc
+
+-   I use Source Code Pro, which can be downloaded [here](https://fonts.google.com/specimen/Source+Code+Pro). However, the vimrc should also download it

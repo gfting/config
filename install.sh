@@ -6,15 +6,36 @@
 
 set -o verbose #echo commands
 
-apt update
+########################################################
+### HAMMERSPOON
+# add the hammerspoon config
+cp ./hammerspoon/init.lua ~/.hammerspoon/init.lua
+
+########################################################
+### FISH
+brew install fish
+cp -r ./fish ~/.config/fish
+
+curl -L https://get.oh-my.fish | fish
+
+### Get Powerline Fonts
+# clone
+git clone https://github.com/powerline/fonts.git --depth=1
+# install
+cd fonts
+./install.sh
+# clean-up a bit
+cd ..
+rm -rf fonts
+
+########################################################
+### ZSH
+brew update
 
 # install zsh
 if ! command -v zsh; then
-  apt install zsh -y
+  brew install zsh
 fi
-
-# add the hammerspoon config
-cp ./hammerspoon/init.lua ~/.hammerspoon/init.lua
 
 # install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -27,6 +48,9 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 cp ./.zshrc ~/.zshrc
 source ~/.zshrc
 
+
+##############################
+### VIM
 # to support new vim
 apt install vim-gui-common
 cp ./.vimrc ~/.vimrc
@@ -35,49 +59,52 @@ cp ./.vimrc ~/.vimrc
 # Adds necessary packages
 apt install curl build-essential checkinstall libssl-dev
 
-# Install NodeJS+NPM, https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions-enterprise-linux-fedora-and-snap-packages
+
+##############################
+### Install Node and NPM
 if ! command -v node; then
-  curl -sL https://deb.nodesource.com/setup_13.x | bash -
-  apt install -y nodejs
+  brew install node
 fi
 
+##############################
+### Languages
 # install Rust, https://www.rust-lang.org/tools/install
 if ! command -v rustc; then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
   source ~/.cargo/env
 fi
 
-# install Ruby
-if ! command -v ruby; then
-  apt install -y ruby
-fi
+# # install Ruby
+# if ! command -v ruby; then
+#   apt install -y ruby
+# fi
 
-# Set up FUSUMA for multi-touch gestures
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-  if ! command -v fusuma; then
-    apt install libinput-tools xdotool
-    gem install fusuma
-  fi
-  mkdir -p ~/.config/fusuma # only creates if dir doesn't already exist
-  cp ./fusuma/config.yml ~/.config/fusuma/config.yml
-fi
+# # Set up FUSUMA for multi-touch gestures
+# if [[ "$OSTYPE" == "linux-gnu" ]]; then
+#   if ! command -v fusuma; then
+#     apt install libinput-tools xdotool
+#     gem install fusuma
+#   fi
+#   mkdir -p ~/.config/fusuma # only creates if dir doesn't already exist
+#   cp ./fusuma/config.yml ~/.config/fusuma/config.yml
+# fi
 
-########################################################
-# XFCE Themeing
-########################################################
+# ########################################################
+# # XFCE Themeing
+# ########################################################
 
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-  if [[ $(ps -e | grep -E -i "xfce4") ]]; then
-    # Adwaita xfce theme
-    xfconf-query -c xsettings -p /Net/ThemeName -s "Adwaita-dark"
-    # papirus dark icons
-    wget -qO- https://git.io/papirus-icon-theme-install | DESTDIR="$HOME/.icons" sh
-    xfconf-query -c xsettings -p /Net/IconThemeName -s "Papirus-Dark"
+# if [[ "$OSTYPE" == "linux-gnu" ]]; then
+#   if [[ $(ps -e | grep -E -i "xfce4") ]]; then
+#     # Adwaita xfce theme
+#     xfconf-query -c xsettings -p /Net/ThemeName -s "Adwaita-dark"
+#     # papirus dark icons
+#     wget -qO- https://git.io/papirus-icon-theme-install | DESTDIR="$HOME/.icons" sh
+#     xfconf-query -c xsettings -p /Net/IconThemeName -s "Papirus-Dark"
 
-    # set window manager theme to Numix
-    xfconf-query -c xfwm4 -p /general/theme -s "Numix"
-  fi
-fi
+#     # set window manager theme to Numix
+#     xfconf-query -c xfwm4 -p /general/theme -s "Numix"
+#   fi
+# fi
 
 #################################m#######################
 # Improved tooling
@@ -96,7 +123,7 @@ cargo install exa
 
 # bat: improved 'cat', https://github.com/sharkdp/bat
 
-# fasd: cd with frecency memory
+# fasd: cd with frequency memory
 
 # fzf: fuzzy finder, https://github.com/junegunn/fzf
 
@@ -107,8 +134,7 @@ cargo install exa
 
 # ripgrep: improved 'grep', https://github.com/BurntSushi/ripgrep
 
-apt install -y bat fasd fd-find fzf httpie rigrep
-
+brew install fd fzf fasd bat httpie rigrep
 
 ########################################################
 # Set default shell as zsh
