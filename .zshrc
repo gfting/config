@@ -63,6 +63,9 @@ ENABLE_CORRECTION="true"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+# Give fzf the base dir
+export FZF_BASE=/usr/local/opt/fzf/bin/fzf
+
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -108,7 +111,6 @@ source $ZSH/oh-my-zsh.sh
 alias ff="firefox"
 # alias tn="thunar"
 
-alias fd="fdfind"
 alias sai="sudo apt install"
 alias sau="sudo apt update"
 
@@ -116,7 +118,7 @@ alias sau="sudo apt update"
 # Options to fzf command
 export FZF_COMPLETION_OPTS='+c -x'
 export FZF_COMPLETION_TRIGGER='**'
-export FZF_DEFAULT_COMMAND='fdfind --type f --hidden'
+export FZF_DEFAULT_COMMAND='fd --type f --hidden'
 
 # Use fd (https://github.com/sharkdp/fd) instead of the default find
 # command for listing path candidates.
