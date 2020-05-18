@@ -8,7 +8,7 @@ Contains collection of things I use for my setup.
 git clone git@github.com:gfting/config.git
 cd config
 chmod a+x ./install.sh
-sudo ./install.sh
+./install.sh
 source ./install.sh #(can't simply execute script)
 source ~/.cargo/env # update PATH for rust tooling
 ```

@@ -118,7 +118,7 @@ cargo install exa
 
 # ripgrep: improved 'grep', https://github.com/BurntSushi/ripgrep
 
-brew install fd fzf fasd bat httpie rigrep
+brew install fd fzf fasd bat httpie ripgrep
 # install fzf to shell scripts [should already be installed, though]
 $(brew --prefix)/opt/fzf/install
 
