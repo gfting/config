@@ -7,6 +7,18 @@
 set -o verbose #echo commands
 
 ########################################################
+### DEPENDENCIES
+# Install some large binaries using cask
+brew tap caskroom/cask
+
+## Adds necessary packages
+# apt install curl build-essential checkinstall libssl-dev
+
+########################################################
+### iTERM
+brew cask install iterm
+
+########################################################
 ### HAMMERSPOON
 # add the hammerspoon config
 cp ./hammerspoon/init.lua ~/.hammerspoon/init.lua
@@ -14,6 +26,8 @@ cp ./hammerspoon/init.lua ~/.hammerspoon/init.lua
 ########################################################
 ### FISH
 brew install fish
+
+# copy the fish configuration over to the config file
 cp -r ./fish ~/.config/fish
 
 curl -L https://get.oh-my.fish | fish
@@ -55,11 +69,8 @@ source ~/.zshrc
 apt install vim-gui-common
 cp ./.vimrc ~/.vimrc
 
-
-# Adds necessary packages
-apt install curl build-essential checkinstall libssl-dev
-
-
+# install basic mac vim ide
+brew cask install macvim
 ##############################
 ### Install Node and NPM
 if ! command -v node; then
@@ -77,33 +88,6 @@ fi
 # # install Ruby
 # if ! command -v ruby; then
 #   apt install -y ruby
-# fi
-
-# # Set up FUSUMA for multi-touch gestures
-# if [[ "$OSTYPE" == "linux-gnu" ]]; then
-#   if ! command -v fusuma; then
-#     apt install libinput-tools xdotool
-#     gem install fusuma
-#   fi
-#   mkdir -p ~/.config/fusuma # only creates if dir doesn't already exist
-#   cp ./fusuma/config.yml ~/.config/fusuma/config.yml
-# fi
-
-# ########################################################
-# # XFCE Themeing
-# ########################################################
-
-# if [[ "$OSTYPE" == "linux-gnu" ]]; then
-#   if [[ $(ps -e | grep -E -i "xfce4") ]]; then
-#     # Adwaita xfce theme
-#     xfconf-query -c xsettings -p /Net/ThemeName -s "Adwaita-dark"
-#     # papirus dark icons
-#     wget -qO- https://git.io/papirus-icon-theme-install | DESTDIR="$HOME/.icons" sh
-#     xfconf-query -c xsettings -p /Net/IconThemeName -s "Papirus-Dark"
-
-#     # set window manager theme to Numix
-#     xfconf-query -c xfwm4 -p /general/theme -s "Numix"
-#   fi
 # fi
 
 #################################m#######################
@@ -135,6 +119,14 @@ cargo install exa
 # ripgrep: improved 'grep', https://github.com/BurntSushi/ripgrep
 
 brew install fd fzf fasd bat httpie rigrep
+# install fzf to shell scripts [should already be installed, though]
+$(brew --prefix)/opt/fzf/install
+
+################################################################
+### Some Git settings
+## Make a base git config file
+# cp gitignore ~/.gitignore
+# git config --global core.excludesfile ~/.gitignore
 
 ########################################################
 # Set default shell as zsh
@@ -143,3 +135,34 @@ brew install fd fzf fasd bat httpie rigrep
 chsh -s $(which zsh)
 
 set +o verbose # echo commands off
+
+
+########################################################
+## Unused things for Linux, etc
+
+# # Set up FUSUMA for multi-touch gestures
+# if [[ "$OSTYPE" == "linux-gnu" ]]; then
+#   if ! command -v fusuma; then
+#     apt install libinput-tools xdotool
+#     gem install fusuma
+#   fi
+#   mkdir -p ~/.config/fusuma # only creates if dir doesn't already exist
+#   cp ./fusuma/config.yml ~/.config/fusuma/config.yml
+# fi
+
+# ########################################################
+# # XFCE Themeing
+# ########################################################
+
+# if [[ "$OSTYPE" == "linux-gnu" ]]; then
+#   if [[ $(ps -e | grep -E -i "xfce4") ]]; then
+#     # Adwaita xfce theme
+#     xfconf-query -c xsettings -p /Net/ThemeName -s "Adwaita-dark"
+#     # papirus dark icons
+#     wget -qO- https://git.io/papirus-icon-theme-install | DESTDIR="$HOME/.icons" sh
+#     xfconf-query -c xsettings -p /Net/IconThemeName -s "Papirus-Dark"
+
+#     # set window manager theme to Numix
+#     xfconf-query -c xfwm4 -p /general/theme -s "Numix"
+#   fi
+# fi

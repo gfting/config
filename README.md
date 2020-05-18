@@ -13,9 +13,16 @@ source ./install.sh #(can't simply execute script)
 source ~/.cargo/env # update PATH for rust tooling
 ```
 
+## Additional manual setup
+
+-   Install Hammerspoon [or `brew cask install hammerspoon`]
+-   Install VSCode [or `brew cask install visual-studio-code`]
+-   Install VSCode extensions
+
 # Credits
 
 -   For the idea of making this and some scripting ideas, I referred to https://github.com/cktang88/mydevenv.
+-   This also helped me find some interesting things https://sourabhbajaj.com/mac-setup/Homebrew/Cask.html
 
 # Hammerspoon
 
@@ -39,13 +46,14 @@ source ~/.cargo/env # update PATH for rust tooling
 
 # iTerm
 
--   Install iTerm
+-   Install iTerm [should happen in script]
 -   Go to `Preferences` -> `General` -> `Preferences` -> `Load preferences from a custom folder or URL`, and then copy the [`com.googlecode.iterm2.plist`](iterm/com.googlecode.iterm2.plist) file there.
 -   Go to `Preferences` -> `Profiles` -> `Other Actions...` -> `Import JSON Profiles` -> use [iterm/Profiles.json](iterm/Profiles.json).
 
 # VSCode
 
--   Install VSCode
+-   Install VSCode [should happen via script]
+-   If not installed, [install the `code` command line](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line)
 -   Open the command palette, and select `Settings (JSON)`. Then, copy-paste the settings.json over.
 -   The script could probably do `~Library/Application Support/Code/User/settings.json`, but I'm not always confident that it transitions well.
 
@@ -67,6 +75,7 @@ source ~/.cargo/env # update PATH for rust tooling
 
 -   The script should `brew install fish`, and then install oh-my-fish, and install some necessary fonts.
 -   Once the script is over, manually run `omf install bobthefish` to install the bobthefish theme, and walk through the setup.
+-   The script will copy over the [./fish](./fish) folder to `~/.config/fish`, the default location of fish configurations.
 
 # Zsh + mods
 
@@ -110,4 +119,11 @@ alias j="fasd_cd -d -i"
 
 # Misc
 
--   I use Source Code Pro, which can be downloaded [here](https://fonts.google.com/specimen/Source+Code+Pro). However, the vimrc should also download it
+## Fonts
+
+-   I use Source Code Pro, which can be downloaded [here](https://fonts.google.com/specimen/Source+Code+Pro). However, the `install.sh` should also download it.
+-   However, this can result in the font being downloaded as "Source Code Pro for Powerline", which will need to be adjusted in the VSCode settings, or it'd result in some weird errors.
+
+## Git
+
+-   Useful gitignore generator: https://www.gitignore.io/?templates=macos
