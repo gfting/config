@@ -143,3 +143,6 @@ alias fzfp="fzf --preview 'bat --style=numbers --color=always {} | head -500'"
 
 # start fasd
 eval "$(fasd --init auto)"
+
+# Add qt prompt and current date and time
+RPROMPT="(◕▿◕✿)%{$fg[cyan]%}[%D{%m/%f/%y} | %D{%H:%M:%S}]"
